@@ -67,7 +67,7 @@ export default function App() {
 
 
         <button className="callButton" onClick={connectWallet}>
-          <strong>Connectar sua carteira</strong>
+          <strong>🦊 Connectar sua carteira</strong>
         </button>
         <button className="callButton" onClick={call}>
           <h2>👋 Olá!</h2>
