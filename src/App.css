@@ -27,10 +27,20 @@
 .callButton {
   cursor: pointer;
   margin-top: 16px;
-  background: #3a88fe;
-  color: white;
+  background: white;
+  color: #153B74;
   padding: 8px;
-  border: 0;
+  border: 3px solid #153B74;
   border-radius: 5px;
-  
+}
+
+.callButton:hover {
+  border: 3px solid #153B74;
+  background: #153B74;
+  color: white;
+  transition: 0.2s;
+}
+
+.callButton:active {
+  transform: translateY(4px);
 }
