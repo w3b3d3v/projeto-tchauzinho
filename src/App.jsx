@@ -4,7 +4,7 @@ import './App.css';
 import abi from "./utils/CallCounter.json"
 
 
-const contractAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+const contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
 const provider = new ethers.providers.Web3Provider(window.ethereum)
 const contractABI = abi.abi
 const callCounterContract = new ethers.Contract(contractAddress, contractABI, provider.getSigner());
@@ -66,9 +66,12 @@ export default function App() {
         </strong>
 
 
-        <button className="callButton" onClick={connectWallet}>
-          <strong>🦊 Connectar sua carteira</strong>
-        </button>
+        {
+          !userAddress &&
+          <button className="callButton" onClick={connectWallet}>
+            <strong>🦊 Connectar sua carteira</strong>
+          </button>
+        }
         <button className="callButton" onClick={call}>
           <h2>👋 Olá!</h2>
         </button>
