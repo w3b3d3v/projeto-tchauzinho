@@ -1,6 +1,8 @@
 {
   "name": "fron-web3",
   "version": "0.3.0",
+  "author": "Lucas Oliveira <olivmath@protonmail.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
