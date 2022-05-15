@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ContractFactory, ethers } from "ethers";
-import './App.css';
 import abi from "./utils/CallCounter.json"
+import { ethers } from "ethers";
+import './App.css';
 
 
-const contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
 const provider = new ethers.providers.Web3Provider(window.ethereum)
 const contractABI = abi.abi
 const callCounterContract = new ethers.Contract(contractAddress, contractABI, provider.getSigner());
@@ -48,6 +48,19 @@ export default function App() {
     await callCounterContract.call({ gasLimit: 300000 })
   }
 
+  const counterCallers = () => {
+    return [...new Set(allCalls.map(item => item.addr))].map((addr, index) => {
+      const explorer = `https://rinkeby.etherscan.io/address/${addr}`
+      const counter = allCalls.filter(item => addr == item.addr).length
+
+      return (
+        <div key={index}>
+          <br/>
+          <strong><a className="link" target="_blank" href={explorer}>{addr}</a></strong> call me <strong>{counter}</strong> times!
+        </div>
+        )
+    })
+  }
 
   return (
     <div className="mainContainer">
@@ -61,10 +74,9 @@ export default function App() {
         Eu sou <a className="link" target="_blank" href="https://linkedin.com/in/olivmath">Lucas Oliveira</a>!
         </h3><br/>
 
-        <strong>
+          <strong className="describe">
         Me mande um 👋 pela Blockchain.
         </strong>
-
 
         {
           !userAddress &&
@@ -72,6 +84,7 @@ export default function App() {
             <strong>🦊 Connectar sua carteira</strong>
           </button>
         }
+
         <button className="callButton" onClick={call}>
           <h2>👋 Olá!</h2>
         </button>

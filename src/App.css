@@ -9,7 +9,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 600px;
+  width: 600px;
+  display: flex;
+  align-items: center;
 }
 
 .header {
@@ -18,7 +20,7 @@
   font-weight: 600;
 }
 
-.bio {
+.bio, .describe {
   text-align: center;
   margin-top: 16px;
 }
@@ -36,15 +38,10 @@
   color: #1a4e9d;
 }
 
-.link:active {
-  text-align: center;
-  margin-top: 16px;
-  color: #153B74;
-}
-
 .callButton {
   cursor: pointer;
   margin-top: 16px;
+  width: 50%;
   background: white;
   color: #153B74;
   padding: 8px;
