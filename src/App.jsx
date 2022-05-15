@@ -17,15 +17,15 @@ export default function App() {
         </div>
 
         <h3 className="bio">
-        Olá meu nome é Lucas Oliveira!
+        Eu sou Lucas Oliveira!
         </h3><br/>
 
         <p>
-        Clicando a baixo vc me chamar pela Blockchain.
+        Clicando a baixo vc me chama pela Blockchain.
         </p>
 
         <button className="callButton" onClick={call}>
-          👋 Salve!
+          <h1>👋 Salve!</h1>
         </button>
       </div>
     </div>
