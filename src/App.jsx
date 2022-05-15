@@ -58,7 +58,7 @@ export default function App() {
         </div>
 
         <h3 className="bio">
-        Eu sou Lucas Oliveira!
+        Eu sou <a className="link" target="_blank" href="https://linkedin.com/in/olivmath">Lucas Oliveira</a>!
         </h3><br/>
 
         <strong>

@@ -20,8 +20,26 @@
 
 .bio {
   text-align: center;
-  color: #217aff;
   margin-top: 16px;
+}
+
+.link {
+  text-align: center;
+  text-decoration: none;
+  color: #3083ff;
+  margin-top: 16px;
+}
+
+.link:hover {
+  text-align: center;
+  margin-top: 16px;
+  color: #1a4e9d;
+}
+
+.link:active {
+  text-align: center;
+  margin-top: 16px;
+  color: #153B74;
 }
 
 .callButton {
