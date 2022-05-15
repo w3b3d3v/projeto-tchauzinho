@@ -4,7 +4,7 @@ import './App.css';
 
 export default function App() {
 
-  const wave = () => {
+  const call = () => {
     
   }
   
@@ -13,15 +13,19 @@ export default function App() {
 
       <div className="dataContainer">
         <div className="header">
-        👋 Olá Pessoal!
+        🌎 Olá Mundo!
         </div>
 
-        <div className="bio">
-        Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
-        </div>
+        <h3 className="bio">
+        Olá meu nome é Lucas Oliveira!
+        </h3><br/>
 
-        <button className="waveButton" onClick={wave}>
-          Mandar Tchauzinho 🌟
+        <p>
+        Clicando a baixo vc me chamar pela Blockchain.
+        </p>
+
+        <button className="callButton" onClick={call}>
+          👋 Salve!
         </button>
       </div>
     </div>
