@@ -1,6 +1,6 @@
 {
-  "name": "ReplitReactjsProject",
-  "version": "0.0.1",
+  "name": "fron-web3",
+  "version": "0.3.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
