@@ -39,6 +39,4 @@ jobs:
       - run: yarn build
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          publish_dir: ./dist
+      - run: yarn deploy
