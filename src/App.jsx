@@ -20,12 +20,12 @@ export default function App() {
         Eu sou Lucas Oliveira!
         </h3><br/>
 
-        <p>
-        Clicando a baixo vc me chama pela Blockchain.
-        </p>
+        <strong>
+        Me mande um 👋 pela Blockchain.
+        </strong>
 
         <button className="callButton" onClick={call}>
-          <h1>👋 Salve!</h1>
+          <h2>👋 Olá!</h2>
         </button>
       </div>
     </div>

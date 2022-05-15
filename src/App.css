@@ -42,5 +42,6 @@
 }
 
 .callButton:active {
+  transition: 0.1s;
   transform: translateY(4px);
 }
