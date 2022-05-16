@@ -1,4 +1,4 @@
-import { callCounterContract } from "../services/CallCounter"
+import { callCounterContract } from "../../services/CallCounter"
 import React, { useState } from "react";
 import './App.css';
 

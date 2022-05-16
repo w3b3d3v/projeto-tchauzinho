@@ -2,9 +2,8 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import './index.css'
 
-import App from './header/App'
-import Calls from './body/Calls'
-
+import App from "./components/header/App"
+import Calls from "./components/body/Calls"
 
 
 ReactDOM.render(

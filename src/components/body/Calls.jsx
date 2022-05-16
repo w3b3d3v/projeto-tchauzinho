@@ -1,4 +1,4 @@
-import { callCounterContract } from "../services/CallCounter"
+import { callCounterContract } from "../../services/CallCounter"
 import React, { useEffect, useState } from "react"
 import "./Calls.css"
 
@@ -10,9 +10,7 @@ export default function Calls() {
 
   useEffect(async () => {
     const listener = async (item) => {
-      setCallers([
-        item.addr, ...await callCounterContract.getCallers()
-      ])
+      setCallers([item, ...await callCounterContract.getCallers()])
     }
     callCounterContract.on("newCall", listener);
   }, [])
