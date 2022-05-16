@@ -17,13 +17,17 @@ export default function Calls() {
 
   return (
     <div className="callMainContainer">
-      <h3>Called me {callers.length} times!</h3>
+      <h3>Já me chamaram {callers.length} vezes!</h3>
       {
         [...new Set(callers)].map((addr, index) => {
           if (!addr) return
           return (
             <div className="caller" key={index}>
-            {addr} call me {count(addr, callers)} times !
+            <a
+            className="link"
+            href={`https://goerli.etherscan.io/address/${addr}`}
+            target="_blank"
+            >{addr}</a>&nbsp;me chamou {count(addr, callers)} vezes !
             </div>
           )
         }).reverse()
