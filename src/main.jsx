@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App, { totalCalls } from './App'
+import App from './App'
+import { totalCalls } from "./Calls"
 
 totalCalls()
 ReactDOM.render(
