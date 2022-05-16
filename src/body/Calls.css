@@ -1,0 +1,18 @@
+.callMainContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 64px;
+}
+
+.caller {
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  border-radius: 5px;
+  display: flex;
+  width: 600px;
+  padding: 1%;
+  margin: 1%;
+}
