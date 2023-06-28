@@ -13,20 +13,25 @@
 Nenhuma configuração ou estruturas de pastas complicada, apenas os arquivos necessários para criar seu aplicativo:
 
 ```
-frontend
+projeto-tchauzinho
 ├── node_modules
 ├── public
-│   ├── vite.svg
-└── src
-    ├── App.css
-    ├── App.jsx
-    ├── index.css
-    ├── main.jsx
+│   └── vite.svg
+├── src
+│   ├── utils
+│   │   └── WavePortal.json
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
 ├── .gitignore
+├── .replit
 ├── index.html
+├── package-lock.json
 ├── package.json
 ├── README.md
-├── vite.config.js
+├── replit.nix
+└── vite.config.js
 ```
 
 ## Desenvolvimento
@@ -34,8 +39,8 @@ frontend
 Para criar uma cópia local do código, clone-o usando git:
 
 ```
-git clone https://github.com/viniblack/portal-tchauzinho-vite.git
-cd portal-tchauzinho-vite
+git clone git@github.com:w3b3d3v/projeto-tchauzinho.git
+cd projeto-tchauzinho
 ```
 
 Adicione no seu git:
