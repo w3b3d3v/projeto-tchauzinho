@@ -38,6 +38,6 @@ Contribuições são bem-vindas! Antes de fazer alterações significativas, abr
 Este projeto está licenciado sob a [MIT License](LICENSE).  
 
 ## Duvidas
-Para mais duvidas visite o curso da [W3D](https://www.alchemy.com/](https://build.w3d.community/courses/Solidity_And_Smart_Contracts))
+Para mais duvidas visite o curso da [W3D](https://build.w3d.community/courses/Solidity_And_Smart_Contracts)
 
 
