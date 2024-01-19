@@ -5,28 +5,31 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #111e2d;
 }
 
 .dataContainer {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 600px;
   padding: 20px;
-  background-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1); /* Cor de fundo com opacidade */
+  backdrop-filter: blur(8px); /* Adiciona o efeito de desfoque */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .header {
   font-size: 32px;
   font-weight: 600;
-  color: #333333;
+  color: #fff;
 }
 
 .bio {
-  color: #666666;
+  color: #fff;
   margin-top: 16px;
   text-align: center;
 }
@@ -62,4 +65,64 @@
 .waveButton:hover,
 .connectWalletButton:hover {
   background-color: #2980b9;
+}
+
+.mensagens {
+  background-color: #3d4364;
+  color: #fff;
+  margin-top: 16px;
+  padding: 8px;
+}
+
+.mensagens .destacado {
+  margin: 5px;
+  font-weight: bold; /* Pode ser usado para destacar a mensagem */
+}
+
+.bgAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  background: #1d1d1d;
+  filter: saturate(2);
+  overflow: hidden;
+}
+
+.colorBox {
+  z-index: 2;
+  filter: brightness(1.1);
+  transition: 2s ease;
+  position: relative;
+  margin: 2px;
+  background: #1d1d1d;
+}
+
+.colorBox:hover {
+  background: #00bfff;
+  transition-duration: 0s;
+}
+
+.backgroundAmim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #00bfff;
+  filter: blur(60px);
+  animation: animBack 6s linear infinite;
+}
+
+@keyframes animBack {
+  0% {
+    top: -60px;
+  }
+  100% {
+    top: 120%;
+  }
 }

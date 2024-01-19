@@ -128,7 +128,7 @@ export default function App() {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
  
         let count = await wavePortalContract.getTotalWaves();
-        console.log("Recuperado o número de tchauzinhos...", count.toNumber());
+        console.log("Recuperado o número de mensagens...", count.toNumber());
 
         const waveTxn = await wavePortalContract.wave(userMessage, { gasLimit: 300000 });
         console.log("Minerando...", waveTxn.hash);
@@ -137,7 +137,7 @@ export default function App() {
         console.log("Minerado -- ", waveTxn.hash);
 
         count = await wavePortalContract.getTotalWaves();
-        console.log("Total de tchauzinhos recuperado...", count.toNumber());
+        console.log("Total de mensagens recuperadas...", count.toNumber());
         
         // Atualiza as mensagens após enviar com sucesso
         getAllWaves();
@@ -152,6 +152,19 @@ export default function App() {
     }
   }
 
+
+    useEffect(() => {
+      const bgAnimation = document.getElementById('bgAnimation');
+  
+      const numberOfColorBoxes = 400;
+  
+      for (let i = 0; i < numberOfColorBoxes; i++) {
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('colorBox');
+        bgAnimation.append(colorBox);
+      }
+    }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -159,39 +172,39 @@ export default function App() {
           👋 Olá Pessoal!
         </div>
         <div className="bio">
-  <p>Que tal deixar uma mensagem aqui? compartilhe o link de sua playlista favorita, um poema ou até mesmo uma piada ;)</p>
-  {currentAccount && (
-    <> 
-      Conecte sua carteira Ethereum wallet e me manda um tchauzinho!
-      <div className="buttonContainer">
-        <input 
-          className="messageInput"
-          type="text" 
-          placeholder="Digite sua mensagem" 
-          value={userMessage} 
-          onChange={(e) => setUserMessage(e.target.value)} 
-        />
-        <button className="waveButton" onClick={wave}>
-          Mandar Tchauzinho 🌟
-        </button>
+          <p>Que tal deixar uma mensagem aqui? compartilhe o link de sua playlista favorita, um poema ou até mesmo uma piada ;)</p>
+          {currentAccount && (
+            <> 
+              <p>Conecte sua carteira Ethereum wallet e me manda uma mensagen!</p>
+              <div className="buttonContainer">
+                <input 
+                  className="messageInput"
+                  type="text" 
+                  placeholder="Digite sua mensagem" 
+                  value={userMessage} 
+                  onChange={(e) => setUserMessage(e.target.value)} 
+                />
+                <button className="waveButton" onClick={wave}>
+                Enviar sua mensagen
+                </button>
 
-        <button className="waveButton" onClick={getAllWaves}>
-          Atualizar Mensagens
-        </button>
-      </div>
-    </>
-  )}
-  {!currentAccount && (
-    <button className="connectWalletButton" onClick={connectWallet}>
-      Conectar carteira
-    </button>
-  )}
-</div>
+                <button className="waveButton" onClick={getAllWaves}>
+                  Atualizar mensagens
+                </button>
+              </div>
+            </>
+          )}
+            {!currentAccount && (
+              <button className="connectWalletButton" onClick={connectWallet}>
+                Conectar carteira
+              </button>
+            )}
+        </div>
         {allWaves.map((wave, index) => (
-          <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
+          <div key={index} className="mensagens" >
             <div>Endereço: {wave.address}</div>
             <div>Data/Horário: {wave.timestamp.toString()}</div>
-            <div>Mensagem: {wave.message}</div>
+            <div className="destacado">Mensagem: {wave.message}</div>
           </div>
         ))}
         {showDeterminationMessage && (
@@ -199,6 +212,10 @@ export default function App() {
             Mandar um tchauzinho te enche de determinação!
           </div>
         )}
+      </div>
+      <div id="bgAnimation" className="bgAnimation">
+        {/* Este elemento irá conter as animações de fundo */}
+        <div className="backgroundAmim"></div>
       </div>
     </div>
   );
