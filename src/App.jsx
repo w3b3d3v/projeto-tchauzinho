@@ -8,8 +8,9 @@ export default function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
   const [userMessage, setUserMessage] = useState("");
-  const [showDeterminationMessage, setShowDeterminationMessage] = useState(false);
-  const contractAddress = "0x4E4Bc2ba6A8b72CaDC53c4266e7dcD2b01701d36";
+
+  const [lastWaveTime, setLastWaveTime] = useState(0); // Adição do estado para controlar o tempo
+  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const contractABI = abi.abi;
 
   const getAllWaves = async () => {
@@ -39,9 +40,6 @@ export default function App() {
     }
   };
   
-  /**
-   * Escuta por eventos emitidos!
-   */
   useEffect(() => {
     let wavePortalContract;
   
@@ -123,6 +121,16 @@ export default function App() {
     try {
       const { ethereum } = window;
       if (ethereum) {
+        const currentTime = Math.floor(Date.now() / 1000);
+        const timeSinceLastWave = currentTime - lastWaveTime;
+
+        if (timeSinceLastWave < 300) {
+          alert("Aguarde 5 minutos antes de enviar outra mensagem.");
+          return;
+        }
+
+        setLastWaveTime(currentTime);
+
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -131,7 +139,7 @@ export default function App() {
         console.log("Recuperado o número de mensagens...", count.toNumber());
 
         const waveTxn = await wavePortalContract.wave(userMessage, { gasLimit: 300000 });
-        console.log("Minerando...", waveTxn.hash);
+        console.log("Minerando no bloco:", waveTxn.hash);
 
         await waveTxn.wait();
         console.log("Minerado -- ", waveTxn.hash);
@@ -141,8 +149,7 @@ export default function App() {
         
         // Atualiza as mensagens após enviar com sucesso
         getAllWaves();
-        // Ativa o estado para exibir a mensagem de determinação na tela
-        setShowDeterminationMessage(true);
+
 
       } else {
         console.log("Objeto Ethereum não encontrado!");
@@ -152,18 +159,17 @@ export default function App() {
     }
   }
 
-
-    useEffect(() => {
-      const bgAnimation = document.getElementById('bgAnimation');
+  useEffect(() => {
+    const bgAnimation = document.getElementById('bgAnimation');
   
-      const numberOfColorBoxes = 400;
+    const numberOfColorBoxes = 400;
   
-      for (let i = 0; i < numberOfColorBoxes; i++) {
-        const colorBox = document.createElement('div');
-        colorBox.classList.add('colorBox');
-        bgAnimation.append(colorBox);
-      }
-    }, []);
+    for (let i = 0; i < numberOfColorBoxes; i++) {
+      const colorBox = document.createElement('div');
+      colorBox.classList.add('colorBox');
+      bgAnimation.append(colorBox);
+    }
+  }, []);
 
   return (
     <div className="mainContainer">
@@ -172,10 +178,18 @@ export default function App() {
           👋 Olá Pessoal!
         </div>
         <div className="bio">
-          <p>Que tal deixar uma mensagem aqui? compartilhe o link de sua playlista favorita, um poema ou até mesmo uma piada ;)</p>
+         {!currentAccount && (
+            <>
+              <p>Conecta com a sua carteira Ethereum e compartilhe algo especial. Uma playlist única, um poema que te faz refletir,
+                 ou até mesmo uma piada para animar o dia. Estou pronto para conferir o que você tem a oferecer! 🔗😄</p>
+              <button className="connectWalletButton" onClick={connectWallet}>
+                Conectar carteira
+              </button>
+            </>
+            )}
           {currentAccount && (
             <> 
-              <p>Conecte sua carteira Ethereum wallet e me manda uma mensagen!</p>
+              <p>Agora que estamos conectados, solte a criatividade e compartilhe algo único. Que tal um link da sua playlist favorita, um poema ou até mesmo uma piada que faça os smart contracts rirem? </p>
               <div className="buttonContainer">
                 <input 
                   className="messageInput"
@@ -187,18 +201,10 @@ export default function App() {
                 <button className="waveButton" onClick={wave}>
                 Enviar sua mensagen
                 </button>
-
-                <button className="waveButton" onClick={getAllWaves}>
-                  Atualizar mensagens
-                </button>
               </div>
             </>
           )}
-            {!currentAccount && (
-              <button className="connectWalletButton" onClick={connectWallet}>
-                Conectar carteira
-              </button>
-            )}
+            
         </div>
         {allWaves.map((wave, index) => (
           <div key={index} className="mensagens" >
@@ -207,11 +213,7 @@ export default function App() {
             <div className="destacado">Mensagem: {wave.message}</div>
           </div>
         ))}
-        {showDeterminationMessage && (
-          <div className="determinationMessage">
-            Mandar um tchauzinho te enche de determinação!
-          </div>
-        )}
+
       </div>
       <div id="bgAnimation" className="bgAnimation">
         {/* Este elemento irá conter as animações de fundo */}
