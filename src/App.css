@@ -79,6 +79,21 @@
   font-weight: bold; /* Pode ser usado para destacar a mensagem */
 }
 
+/* Adicione um estilo CSS para animar a rotação do spinner */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingIcon {
+  animation: rotate 1s linear infinite; /* Aplica a animação de rotação */
+}
+
+
 .bgAnimation {
   position: fixed; /* Alteração aqui para o elemento ser fixo na tela */
   top: 0;

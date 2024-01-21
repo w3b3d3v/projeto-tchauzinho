@@ -42,7 +42,7 @@ contract WavePortal {
 
         seed = (block.difficulty + block.timestamp + seed) % 100;
 
-        if (seed <= 50) {
+        if (seed <= 30) {
             console.log("%s venceu!", msg.sender);
 
             uint256 prizeAmount = 0.0001 ether;

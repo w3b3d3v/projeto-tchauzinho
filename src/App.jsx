@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json"
+import { FaSpinner } from 'react-icons/fa';
 
 export default function App() {
+  const [loading, setLoading] = useState(false);
 
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
   const [userMessage, setUserMessage] = useState("");
 
   const [lastWaveTime, setLastWaveTime] = useState(0); // Adição do estado para controlar o tempo
-  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+  const contractAddress = "0x1cc0ef9040A8000c5Bf4b2f7B3Dc1595781e094D"; 
   const contractABI = abi.abi;
 
   const getAllWaves = async () => {
@@ -131,10 +133,12 @@ export default function App() {
 
         setLastWaveTime(currentTime);
 
+        setLoading(true); // Ativa o indicador de carregamento
+
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
- 
+
         let count = await wavePortalContract.getTotalWaves();
         console.log("Recuperado o número de mensagens...", count.toNumber());
 
@@ -146,18 +150,22 @@ export default function App() {
 
         count = await wavePortalContract.getTotalWaves();
         console.log("Total de mensagens recuperadas...", count.toNumber());
-        
+
+        setLoading(false); // Desativa o indicador de carregamento
+
+        // Limpar o campo de mensagem após o envio com sucesso
+        setUserMessage('');
+
         // Atualiza as mensagens após enviar com sucesso
         getAllWaves();
-
-
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setLoading(false); // Desativa o indicador de carregamento em caso de erro
     }
-  }
+  };
 
   useEffect(() => {
     const bgAnimation = document.getElementById('bgAnimation');
@@ -198,9 +206,13 @@ export default function App() {
                   value={userMessage} 
                   onChange={(e) => setUserMessage(e.target.value)} 
                 />
-                <button className="waveButton" onClick={wave}>
-                Enviar sua mensagen
-                </button>
+                {loading ? (
+                  <FaSpinner className="loadingIcon" /> // Ícone de carregamento enquanto envia
+                ) : (
+                  <button className="waveButton" onClick={wave}>
+                    Enviar sua mensagem
+                  </button>
+                )}
               </div>
             </>
           )}
