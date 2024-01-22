@@ -12,7 +12,7 @@ export default function App() {
   const [userMessage, setUserMessage] = useState("");
 
   const [lastWaveTime, setLastWaveTime] = useState(0); // Adição do estado para controlar o tempo
-  const contractAddress = "0x1cc0ef9040A8000c5Bf4b2f7B3Dc1595781e094D"; 
+  const contractAddress = "0x7A1149eD204DA3aCB71282a26d5048df7Ad7Edc8"; 
   const contractABI = abi.abi;
 
   const getAllWaves = async () => {
